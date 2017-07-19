@@ -72,9 +72,7 @@ FileUploader.prototype.init = function () {
 FileUploader.prototype.upload = function () {
     if (this.opt['before-upload'](this.file) && !this.file.uploaded) {
         this.xhr.open('POST', this.opt.action);
-        method.repeatSet(Object.assign({
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }, this.opt.headers), this.xhr.setRequestHeader.bind(this.xhr));
+        method.repeatSet(this.opt.headers, this.xhr.setRequestHeader.bind(this.xhr));
         this.xhr.send(this.formData);
     }
 };
